@@ -14,6 +14,7 @@
  */
 
 #include <linux/clkdev.h>
+#include <linux/clk.h>
 #include <linux/of_platform.h>
 #include <linux/debugfs.h>
 #include <linux/platform_data/tegra_edp.h>
@@ -88,6 +89,7 @@ struct gk20a_emc_params {
 #define MHZ_TO_HZ(x) ((x) * 1000000)
 #define HZ_TO_MHZ(x) ((x) / 1000000)
 
+
 static void gk20a_tegra_secure_page_destroy(struct gk20a *g,
 				       struct secure_page_buffer *secure_buffer)
 {
@@ -161,7 +163,7 @@ fail_sgt:
  * This function returns the minimum emc clock based on gpu frequency
  */
 
-static unsigned long gk20a_tegra_get_emc_rate(struct gk20a *g,
+/*static unsigned long gk20a_tegra_get_emc_rate(struct gk20a *g,
 				struct gk20a_emc_params *emc_params)
 {
 	unsigned long gpu_freq, gpu_fmax_at_vmin;
@@ -170,10 +172,10 @@ static unsigned long gk20a_tegra_get_emc_rate(struct gk20a *g,
 	gpu_freq = clk_get_rate(g->clk.tegra_clk);
 	gpu_fmax_at_vmin = tegra_dvfs_get_fmax_at_vmin_safe_t(
 		clk_get_parent(g->clk.tegra_clk));
-
+*/
 	/* When scaling emc, account for the gpu load when the
 	 * gpu frequency is less than or equal to fmax@vmin. */
-	if (gpu_freq <= gpu_fmax_at_vmin)
+/*	if (gpu_freq <= gpu_fmax_at_vmin)
 		emc_scale = min(g->pmu.load_avg, g->emc3d_ratio);
 	else
 		emc_scale = g->emc3d_ratio;
@@ -182,7 +184,7 @@ static unsigned long gk20a_tegra_get_emc_rate(struct gk20a *g,
 		(HZ_TO_MHZ(gpu_freq) * emc_params->bw_ratio * emc_scale) / 1000;
 
 	return MHZ_TO_HZ(emc_rate);
-}
+}*/
 
 /*
  * gk20a_tegra_prescale(profile, freq)
@@ -540,7 +542,7 @@ static void gk20a_tegra_scale_init(struct device *dev)
 	struct gk20a_platform *platform = gk20a_get_platform(dev);
 	struct gk20a_scale_profile *profile = platform->g->scale_profile;
 	struct gk20a_emc_params *emc_params;
-	struct gk20a *g = platform->g;
+//	struct gk20a *g = platform->g;
 
 	if (!profile)
 		return;

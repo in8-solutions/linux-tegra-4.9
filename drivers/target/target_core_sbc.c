@@ -549,7 +549,7 @@ static sense_reason_t compare_and_write_callback(struct se_cmd *cmd, bool succes
 			goto out;
 		}
 
-		len = min(sg->length, compare_len);
+		len = min((unsigned)sg->length, (unsigned)compare_len);
 
 		if (memcmp(addr, buf + offset, len)) {
 			pr_warn("Detected MISCOMPARE for addr: %p buf: %p\n",
@@ -1284,7 +1284,7 @@ sbc_dif_generate(struct se_cmd *cmd)
 			}
 
 			sdt = paddr + j;
-			avail = min(block_size, dsg->length - offset);
+			avail = min((unsigned)block_size, (unsigned)(dsg->length - offset));
 			crc = crc_t10dif(daddr + offset, avail);
 			if (avail < block_size) {
 				kunmap_atomic(daddr - dsg->offset);
@@ -1379,9 +1379,9 @@ void sbc_dif_copy_prot(struct se_cmd *cmd, unsigned int sectors, bool read,
 		unsigned int psg_len, copied = 0;
 
 		paddr = kmap_atomic(sg_page(psg)) + psg->offset;
-		psg_len = min(left, psg->length);
+		psg_len = min((unsigned)left, (unsigned)psg->length);
 		while (psg_len) {
-			len = min(psg_len, sg->length - offset);
+			len = min((unsigned)psg_len, (unsigned)(sg->length - offset));
 			addr = kmap_atomic(sg_page(sg)) + sg->offset + offset;
 
 			if (read)
@@ -1453,7 +1453,7 @@ sbc_dif_verify(struct se_cmd *cmd, sector_t start, unsigned int sectors,
 				goto next;
 			}
 
-			avail = min(block_size, dsg->length - dsg_off);
+			avail = min((unsigned)block_size, (unsigned)(dsg->length - dsg_off));
 			crc = crc_t10dif(daddr + dsg_off, avail);
 			if (avail < block_size) {
 				kunmap_atomic(daddr - dsg->offset);

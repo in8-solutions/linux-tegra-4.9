@@ -99,8 +99,8 @@ iscsi_tcp_segment_init_sg(struct iscsi_segment *segment,
 {
 	segment->sg = sg;
 	segment->sg_offset = offset;
-	segment->size = min(sg->length - offset,
-			    segment->total_size - segment->total_copied);
+	segment->size = min((unsigned)(sg->length - offset),
+			    (unsigned)(segment->total_size - segment->total_copied));
 	segment->data = NULL;
 }
 

@@ -145,9 +145,9 @@ static void iser_data_buf_dump(struct iser_data_buf *data,
 	for_each_sg(data->sg, sg, data->dma_nents, i)
 		iser_dbg("sg[%d] dma_addr:0x%lX page:0x%p "
 			 "off:0x%x sz:0x%x dma_len:0x%x\n",
-			 i, (unsigned long)ib_sg_dma_address(ibdev, sg),
-			 sg_page(sg), sg->offset,
-			 sg->length, ib_sg_dma_len(ibdev, sg));
+			 (int)i, (unsigned long)ib_sg_dma_address(ibdev, sg),
+			 sg_page(sg), (unsigned int)sg->offset,
+			 (unsigned int)sg->length, (unsigned int)ib_sg_dma_len(ibdev, sg));
 }
 
 static void iser_dump_page_vec(struct iser_page_vec *page_vec)

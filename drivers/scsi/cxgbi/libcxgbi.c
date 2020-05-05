@@ -1294,7 +1294,7 @@ static int cxgbi_ddp_sgl_check(struct scatterlist *sgl, int nents)
 		    ((i != last_sgidx) && len != PAGE_SIZE)) {
 			log_debug(1 << CXGBI_DBG_DDP,
 				  "sg %u/%u, %u,%u, not aligned.\n",
-				  i, nents, sg->offset, sg->length);
+				  (unsigned int)i, (unsigned int)nents, (unsigned int)sg->offset, (unsigned int)sg->length);
 			goto err_out;
 		}
 	}

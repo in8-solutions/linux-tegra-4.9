@@ -1520,8 +1520,8 @@ csio_scsi_copy_to_sgl(struct csio_hw *hw, struct csio_ioreq *req)
 
 		buf_addr = dma_buf->vaddr + buf_off;
 		sg_off = sg->offset + start_off;
-		bytes_copy = min((dma_buf->len - buf_off),
-				sg->length - start_off);
+		bytes_copy = min((unsigned)(dma_buf->len - buf_off),
+				(unsigned)(sg->length - start_off));
 		bytes_copy = min((uint32_t)(PAGE_SIZE - (sg_off & ~PAGE_MASK)),
 				 bytes_copy);
 

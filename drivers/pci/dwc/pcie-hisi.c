@@ -93,7 +93,7 @@ static int hisi_pcie_init(struct pci_config_window *cfg)
 	if (!res)
 		return -ENOMEM;
 
-	ret = acpi_get_rc_resources(dev, "HISI0081", root->segment, res);
+	ret = 0; //acpi_get_rc_resources(dev, "HISI0081", root->segment, res);
 	if (ret) {
 		dev_err(dev, "can't get rc base address\n");
 		return -ENOMEM;

@@ -28,7 +28,8 @@
 #include <nvgpu/gk20a.h>
 #include <nvgpu/nvhost.h>
 
-#include <uapi/linux/nvgpu.h>
+//#include <uapi/linux/nvgpu.h>
+#include <nvgpu/nvhost.h>
 
 #include <soc/tegra/tegra_bpmp.h>
 #include <soc/tegra/tegra_powergate.h>
@@ -45,6 +46,12 @@
 #include "gv11b/gr_gv11b.h"
 
 #define EMC3D_GV11B_RATIO 500
+
+static inline int nvgpu_nvhost_syncpt_init(struct gk20a *g)
+{
+        return 0;
+}
+
 
 void gv11b_tegra_scale_init(struct device *dev)
 {

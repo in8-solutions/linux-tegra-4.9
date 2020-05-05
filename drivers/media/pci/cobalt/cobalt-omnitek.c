@@ -202,7 +202,7 @@ int descriptor_list_create(struct cobalt *cobalt,
 		d->reserved0 = 0;
 
 		/* Transfer bytes */
-		bytes = min(sg_dma_len(scatter_list) - offset,
+		bytes = min((unsigned)sg_dma_len(scatter_list) - offset,
 				copy_bytes - copied);
 
 		if (first) {
@@ -245,7 +245,7 @@ int descriptor_list_create(struct cobalt *cobalt,
 
 		if (copied == copy_bytes) {
 			while (copied < stride) {
-				bytes = min(sg_dma_len(scatter_list) - offset,
+				bytes = min((unsigned)sg_dma_len(scatter_list) - offset,
 						stride - copied);
 				copied += bytes;
 				offset += bytes;

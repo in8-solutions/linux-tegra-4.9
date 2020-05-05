@@ -92,7 +92,7 @@ static void adc_jack_handler(struct work_struct *work)
 	
 	dev_info(data->dev,
 		"ADC Lower:Value:Upper = %d:%d:%d, Cable:%d\n",
-		def->min_adc, adc_val, def->max_adc, dev->id);
+		def->min_adc, adc_val, def->max_adc, data->dev->id);
 
 }
 
@@ -176,7 +176,7 @@ static struct adc_jack_pdata *of_get_platform_data(
 		of_property_read_u32_index(np, "extcon-adc-jack,states",
 					i * 3 + 2, &max_adc);
 
-		pdata->adc_conditions[i].state = state;
+		//pdata->adc_conditions[i].state = state;
 		pdata->adc_conditions[i].min_adc = (int) min_adc;
 		pdata->adc_conditions[i].max_adc = (int) max_adc;
 	};

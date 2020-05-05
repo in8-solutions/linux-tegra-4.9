@@ -1064,9 +1064,9 @@ static struct scatterlist *wa_xfer_create_subset_sg(struct scatterlist *in_sg,
 		nents = 0;
 		while ((bytes_processed < bytes_to_transfer) &&
 				current_seg_sg && current_xfer_sg) {
-			unsigned int page_len = min((current_xfer_sg->length -
+			unsigned int page_len = min((unsigned)(current_xfer_sg->length -
 				offset_into_current_page_data),
-				(bytes_to_transfer - bytes_processed));
+				(unsigned)(bytes_to_transfer - bytes_processed));
 
 			sg_set_page(current_seg_sg, sg_page(current_xfer_sg),
 				page_len,

@@ -3821,7 +3821,7 @@ static int pm80xx_chip_smp_req(struct pm8001_hba_info *pm8001_ha,
 
 	length = sg_req->length;
 	PM8001_IO_DBG(pm8001_ha,
-		pm8001_printk("SMP Frame Length %d\n", sg_req->length));
+		pm8001_printk("SMP Frame Length %d\n", (int)sg_req->length));
 	if (!(length - 8))
 		pm8001_ha->smp_exp_mode = SMP_DIRECT;
 	else

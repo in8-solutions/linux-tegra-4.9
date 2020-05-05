@@ -141,8 +141,8 @@ static void gp10b_tegra_scale_exit(struct device *dev)
 static int gp10b_tegra_probe(struct device *dev)
 {
 	struct gk20a_platform *platform = dev_get_drvdata(dev);
-#ifdef CONFIG_TEGRA_GK20A_NVHOST
 	int ret;
+#ifdef CONFIG_TEGRA_GK20A_NVHOST
 
 	ret = nvgpu_get_nvhost_dev(platform->g);
 	if (ret)

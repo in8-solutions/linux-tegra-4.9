@@ -67,9 +67,9 @@ static inline void *tegra_bpmp_alloc_coherent(size_t size, dma_addr_t *phys,
 static inline void tegra_bpmp_free_coherent(size_t size, void *vaddr,
 		dma_addr_t phys) { }
 #ifdef CONFIG_DEBUG_FS
-struct dentry *tegra_bpmp_debugfs_add_file(char *name,
+/*struct dentry *tegra_bpmp_debugfs_add_file(char *name,
 	umode_t mode, void *data, const struct file_operations *fops)
-{ return NULL; }
+{ return NULL; }*/
 #endif
 #endif
 

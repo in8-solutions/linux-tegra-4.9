@@ -651,6 +651,12 @@ static int nvgpu_pci_pm_deinit(struct device *dev)
 	return 0;
 }
 
+static inline int nvgpu_nvhost_syncpt_init(struct gk20a *g)
+{
+        return 0;
+}
+
+
 static int nvgpu_pci_probe(struct pci_dev *pdev,
 			   const struct pci_device_id *pent)
 {

@@ -1,5 +1,5 @@
 /*
- *  linux/mm/vmscan.c
+ e  linux/mm/vmscan.c
  *
  *  Copyright (C) 1991, 1992, 1993, 1994  Linus Torvalds
  *
@@ -1617,8 +1617,11 @@ static int __too_many_isolated(struct pglist_data *pgdat, int file,
 			isolated = node_page_state_snapshot(pgdat,
 					NR_ISOLATED_FILE);
 		} else {
-			inactive = node_page_state(zone, NR_INACTIVE_FILE);
-			isolated = node_page_state(zone, NR_ISOLATED_FILE);
+			//inactive = node_page_state(zone, NR_INACTIVE_FILE);
+			//isolated = node_page_state(zone, NR_ISOLATED_FILE);
+			inactive = node_page_state(pgdat, NR_INACTIVE_ANON);
+			isolated = node_page_state(pgdat, NR_ISOLATED_ANON);
+
 		}
 	} else {
 		if (safe) {
